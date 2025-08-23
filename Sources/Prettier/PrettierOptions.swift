@@ -111,9 +111,6 @@ public enum EmbeddedLanguageFormatting: String, CaseIterable, Identifiable {
 
 /// Comprehensive Prettier options
 public struct PrettierOptions {
-    /// Specify which parser to use
-    public var parser: PrettierParser
-    
     /// The line length where Prettier will try wrap (default: 80)
     public var printWidth: Int
     
@@ -184,7 +181,6 @@ public struct PrettierOptions {
     public var embeddedLanguageFormatting: EmbeddedLanguageFormatting
     
     public init(
-        parser: PrettierParser,
         printWidth: Int = 80,
         tabWidth: Int = 2,
         useTabs: Bool = false,
@@ -207,7 +203,6 @@ public struct PrettierOptions {
         singleAttributePerLine: Bool = false,
         embeddedLanguageFormatting: EmbeddedLanguageFormatting = .auto
     ) {
-        self.parser = parser
         self.printWidth = printWidth
         self.tabWidth = tabWidth
         self.useTabs = useTabs

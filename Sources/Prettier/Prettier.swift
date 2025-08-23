@@ -41,7 +41,7 @@ public class PrettierFormatter {
         var isCompleted = false
         
         // Configure options
-        let finalOptions = buildOptions(parser: parser, options: options)
+        let finalOptions = buildOptions(options: options)
         let optionsDict = buildOptionsDict(parser: parser, options: finalOptions)
         
         // Check Prettier availability
@@ -124,9 +124,8 @@ public class PrettierFormatter {
     }
     
     /// Helper method: build options
-    private func buildOptions(parser: PrettierParser, options: PrettierOptions?) -> PrettierOptions {
+    private func buildOptions(options: PrettierOptions?) -> PrettierOptions {
         return PrettierOptions(
-            parser: parser,
             printWidth: options?.printWidth ?? 80,
             tabWidth: options?.tabWidth ?? 2,
             useTabs: options?.useTabs ?? false,
