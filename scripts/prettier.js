@@ -47,11 +47,20 @@ function format(value, options = {}) {
     const entry = parserPluginMap[actualParser];
     if (!entry) throw new Error(`Unsupported parser: ${actualParser}`);
 
+    // For HTML parsing, we need to include JavaScript plugins as well
+    // to properly format embedded JavaScript code
+    let plugins = [entry.plugin];
+    
+    if (actualParser === 'html' || actualParser === 'vue' || actualParser === 'angular' || actualParser === 'lwc') {
+        // Add JavaScript plugins for embedded JavaScript formatting
+        plugins.push(babelPlugin, typescriptPlugin, acornPlugin);
+    }
+
     return prettier.format(value, {
         parser: actualParser,
         tabWidth,
         printWidth,
-        plugins: [entry.plugin],
+        plugins,
         ...other
     });
 }
