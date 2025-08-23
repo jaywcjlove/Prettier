@@ -112,97 +112,76 @@ public enum EmbeddedLanguageFormatting: String, CaseIterable, Identifiable {
 /// Comprehensive Prettier options
 public struct PrettierOptions {
     /// Specify which parser to use
-    public let parser: PrettierParser
+    public var parser: PrettierParser
     
-    /// The line length where Prettier will try wrap
-    /// @default 80
-    public let printWidth: Int
+    /// The line length where Prettier will try wrap (default: 80)
+    public var printWidth: Int
     
-    /// Number of spaces per indentation level
-    /// @default 2
-    public let tabWidth: Int
+    /// Number of spaces per indentation level (default: 2)
+    public var tabWidth: Int
     
-    /// Indent with tabs instead of spaces
-    /// @default false
-    public let useTabs: Bool
+    /// Indent with tabs instead of spaces (default: false)
+    public var useTabs: Bool
     
-    /// Print semicolons at the ends of statements
-    /// @default true
-    public let semi: Bool
+    /// Print semicolons at the ends of statements (default: true)
+    public var semi: Bool
     
-    /// Use single quotes instead of double quotes
-    /// @default false
-    public let singleQuote: Bool
+    /// Use single quotes instead of double quotes (default: false)
+    public var singleQuote: Bool
     
-    /// Change when properties in objects are quoted
-    /// @default "as-needed"
-    public let quoteProps: QuoteProps
+    /// Change when properties in objects are quoted (default: "as-needed")
+    public var quoteProps: QuoteProps
     
-    /// Use single quotes in JSX
-    /// @default false
-    public let jsxSingleQuote: Bool
+    /// Use single quotes in JSX (default: false)
+    public var jsxSingleQuote: Bool
     
-    /// Print trailing commas wherever possible when multi-line
-    /// @default "es5"
-    public let trailingComma: TrailingComma
+    /// Print trailing commas wherever possible when multi-line (default: "es5")
+    public var trailingComma: TrailingComma
     
-    /// Print spaces between brackets in object literals
-    /// @default true
-    public let bracketSpacing: Bool
+    /// Print spaces between brackets in object literals (default: true)
+    public var bracketSpacing: Bool
     
     /// Put the `>` of a multi-line HTML (HTML, JSX, Vue, Angular) element at the end of the last line
-    /// instead of being alone on the next line (does not apply to self closing elements)
-    /// @default false
-    public let bracketSameLine: Bool
+    /// instead of being alone on the next line (does not apply to self closing elements, default: false)
+    public var bracketSameLine: Bool
     
-    /// Include parentheses around a sole arrow function parameter
-    /// @default "always"
-    public let arrowParens: ArrowParens
+    /// Include parentheses around a sole arrow function parameter (default: "always")
+    public var arrowParens: ArrowParens
     
-    /// Which end of line characters to apply
-    /// @default "lf"
-    public let endOfLine: EndOfLine
+    /// Which end of line characters to apply (default: "lf")
+    public var endOfLine: EndOfLine
     
-    /// Format only a segment of a file - start offset
-    /// @default 0
-    public let rangeStart: Int
+    /// Format only a segment of a file - start offset (default: 0)
+    public var rangeStart: Int
     
-    /// Format only a segment of a file - end offset
-    /// @default Number.POSITIVE_INFINITY
-    public let rangeEnd: Int
+    /// Format only a segment of a file - end offset (default: Number.POSITIVE_INFINITY)
+    public var rangeEnd: Int
     
     /// Prettier can restrict itself to only format files that contain a special comment, called a pragma, at the top of the file.
-    /// This is very useful when gradually transitioning large, unformatted codebases to prettier.
-    /// @default false
-    public let requirePragma: Bool
+    /// This is very useful when gradually transitioning large, unformatted codebases to prettier. (default: false)
+    public var requirePragma: Bool
     
     /// Prettier can insert a special @format marker at the top of files specifying that
     /// the file has been formatted with prettier. This works well when used in tandem with
     /// the --require-pragma option. If there is already a docblock at the top of
-    /// the file then this option will add a newline to it with the @format marker.
-    /// @default false
-    public let insertPragma: Bool
+    /// the file then this option will add a newline to it with the @format marker. (default: false)
+    public var insertPragma: Bool
     
     /// By default, Prettier will wrap markdown text as-is since some services use a linebreak-sensitive renderer.
-    /// In some cases you may want to rely on editor/viewer soft wrapping instead, so this option allows you to opt out.
-    /// @default "preserve"
-    public let proseWrap: ProseWrap
+    /// In some cases you may want to rely on editor/viewer soft wrapping instead, so this option allows you to opt out. (default: "preserve")
+    public var proseWrap: ProseWrap
     
-    /// How to handle whitespaces in HTML
-    /// @default "css"
-    public let htmlWhitespaceSensitivity: HTMLWhitespaceSensitivity
+    /// How to handle whitespaces in HTML (default: "css")
+    public var htmlWhitespaceSensitivity: HTMLWhitespaceSensitivity
     
-    /// Whether or not to indent the code inside <script> and <style> tags in Vue files
-    /// @default false
-    public let vueIndentScriptAndStyle: Bool
+    /// Whether or not to indent the code inside <script> and <style> tags in Vue files (default: false)
+    public var vueIndentScriptAndStyle: Bool
     
-    /// Enforce single attribute per line in HTML, Vue and JSX
-    /// @default false
-    public let singleAttributePerLine: Bool
+    /// Enforce single attribute per line in HTML, Vue and JSX (default: false)
+    public var singleAttributePerLine: Bool
     
-    /// Control whether Prettier formats quoted code embedded in the file
-    /// @default "auto"
-    public let embeddedLanguageFormatting: EmbeddedLanguageFormatting
+    /// Control whether Prettier formats quoted code embedded in the file (default: "auto")
+    public var embeddedLanguageFormatting: EmbeddedLanguageFormatting
     
     public init(
         parser: PrettierParser,
