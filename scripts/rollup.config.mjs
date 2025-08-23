@@ -21,7 +21,7 @@ export default {
         nodePolyfills({
             exclude: ['fs', 'path', 'crypto', 'stream'] // 排除 JavaScript Core 不需要的模块
         }),
-        terser(),
+        // terser(),
         // terser({
         //     compress: {
         //         drop_console: true,

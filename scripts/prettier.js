@@ -4,6 +4,7 @@ import yamlPlugin from 'prettier/plugins/yaml';
 import babelPlugin from 'prettier/plugins/babel'
 import flowPlugin from 'prettier/plugins/flow'
 import typescriptPlugin from 'prettier/plugins/typescript'
+import estreePlugin from 'prettier/plugins/estree'
 import acornPlugin from 'prettier/plugins/acorn'
 import meriyahPlugin from 'prettier/plugins/meriyah'
 import postcssPlugin from 'prettier/plugins/postcss'
@@ -52,8 +53,8 @@ function format(value, options = {}) {
     let plugins = [entry.plugin];
     
     if (actualParser === 'html' || actualParser === 'vue' || actualParser === 'angular' || actualParser === 'lwc') {
-        // Add JavaScript plugins for embedded JavaScript formatting
-        plugins.push(babelPlugin, typescriptPlugin, acornPlugin);
+        // Add JavaScript and CSS plugins for embedded code formatting
+        plugins.push(estreePlugin, babelPlugin, typescriptPlugin, acornPlugin, postcssPlugin);
     }
 
     return prettier.format(value, {

@@ -48,3 +48,35 @@ import Testing
     let formattedCSS = try formatter.format(unformattedCSS, parser: .css)
     #expect(formatterCSS == formattedCSS.trimmingCharacters(in: .whitespacesAndNewlines))
 }
+
+@Test func testHTMLFormatting() async throws {
+    let formatter = try PrettierFormatter()
+    let unformatted = """
+    <SCRIPT>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('sdnds', 'pageview')
+    </SCRIPT>
+    <style>
+    .class::before{content:"Hello 'world'\\aNew line\\9Tab";color:red;}
+    </style>
+    """
+    let formatterHTML = """
+    <script>
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-XXXXX-Y", "auto");
+      ga("sdnds", "pageview");
+    </script>
+    <style>
+      .class::before {
+        content: "Hello 'world'\\aNew line\\9Tab";
+        color: red;
+      }
+    </style>
+    """
+    let formattedHTML = try formatter.format(unformatted, parser: .html)
+    #expect(formatterHTML == formattedHTML.trimmingCharacters(in: .whitespacesAndNewlines))
+}
