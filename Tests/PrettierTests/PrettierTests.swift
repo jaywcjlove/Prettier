@@ -80,3 +80,68 @@ import Testing
     let formattedHTML = try formatter.format(unformatted, parser: .html)
     #expect(formatterHTML == formattedHTML.trimmingCharacters(in: .whitespacesAndNewlines))
 }
+
+@Test func testBabelFormatting() async throws {
+    let formatter = try PrettierFormatter()
+    let unformatted = """
+    function HelloWorld({greeting = "hello", greeted = '"World"', silent = false, onMouseOver,}) {
+
+      if(!greeting){return null};
+
+         // TODO: Don't use random in render
+      let num = Math.floor (Math.random() * 1E+7).toString().replace(/\\.\\d+/ig, "")
+
+      return <div className='HelloWorld' title={`You are visitor number ${ num }`} onMouseOver={onMouseOver}>
+
+        <strong>{ greeting.slice( 0, 1 ).toUpperCase() + greeting.slice(1).toLowerCase() }</strong>
+        {greeting.endsWith(",") ? " " : <span style={{color: 'grey'}}>", "</span> }
+        <em>
+        { greeted }
+        </em>
+        { (silent)
+          ? "."
+          : "!"}
+
+        </div>;
+
+    }
+    """
+    let formatterHTML = """
+    function HelloWorld({
+      greeting = "hello",
+      greeted = '"World"',
+      silent = false,
+      onMouseOver,
+    }) {
+      if (!greeting) {
+        return null;
+      }
+
+      // TODO: Don't use random in render
+      let num = Math.floor(Math.random() * 1e7)
+        .toString()
+        .replace(/\\.\\d+/gi, "");
+
+      return (
+        <div
+          className="HelloWorld"
+          title={`You are visitor number ${num}`}
+          onMouseOver={onMouseOver}
+        >
+          <strong>
+            {greeting.slice(0, 1).toUpperCase() + greeting.slice(1).toLowerCase()}
+          </strong>
+          {greeting.endsWith(",") ? (
+            " "
+          ) : (
+            <span style={{ color: "grey" }}>", "</span>
+          )}
+          <em>{greeted}</em>
+          {silent ? "." : "!"}
+        </div>
+      );
+    }
+    """
+    let formattedHTML = try formatter.format(unformatted, parser: .babel)
+    #expect(formatterHTML == formattedHTML.trimmingCharacters(in: .whitespacesAndNewlines))
+}

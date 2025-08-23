@@ -42,23 +42,19 @@ const parserPluginMap = {
 };
 
 function format(value, options = {}) {
-    const { parserName, parser, tabWidth = 2, printWidth = 120, ...other } = options;
-    // Use parserName if provided, otherwise fallback to parser
-    const actualParser = parserName || parser;
-    const entry = parserPluginMap[actualParser];
-    if (!entry) throw new Error(`Unsupported parser: ${actualParser}`);
-
+    const { parser, tabWidth = 2, printWidth = 120, ...other } = options;
+    const entry = parserPluginMap[parser];
+    if (!entry) throw new Error(`Unsupported parser: ${parser}`);
     // For HTML parsing, we need to include JavaScript plugins as well
     // to properly format embedded JavaScript code
-    let plugins = [entry.plugin];
-    
-    if (actualParser === 'html' || actualParser === 'vue' || actualParser === 'angular' || actualParser === 'lwc') {
+    let plugins = [entry.plugin, estreePlugin];
+    if (parser === 'html' || parser === 'vue' || parser === 'angular' || parser === 'lwc') {
         // Add JavaScript and CSS plugins for embedded code formatting
-        plugins.push(estreePlugin, babelPlugin, typescriptPlugin, acornPlugin, postcssPlugin);
+        plugins.push(babelPlugin, typescriptPlugin, acornPlugin, postcssPlugin);
     }
 
     return prettier.format(value, {
-        parser: actualParser,
+        parser: parser,
         tabWidth,
         printWidth,
         plugins,
