@@ -7,7 +7,8 @@
 
 
 /// Prettier parser types
-public enum PrettierParser: String, CaseIterable {
+public enum PrettierParser: String, CaseIterable, Identifiable {
+    public var id: String { rawValue }
     case babel = "babel"
     case babelFlow = "babel-flow"
     case babelTs = "babel-ts"
@@ -34,7 +35,8 @@ public enum PrettierParser: String, CaseIterable {
 }
 
 /// Quote properties options
-public enum QuoteProps: String {
+public enum QuoteProps: String, CaseIterable, Identifiable {
+    public var id: String { rawValue }
     /// Only add quotes around object properties where required
     case asNeeded = "as-needed"
     /// If at least one property in an object requires quotes, quote all properties
@@ -44,7 +46,8 @@ public enum QuoteProps: String {
 }
 
 /// Trailing comma options
-public enum TrailingComma: String {
+public enum TrailingComma: String, CaseIterable, Identifiable {
+    public var id: String { rawValue }
     /// No trailing commas
     case none = "none"
     /// Trailing commas where valid in ES5 (objects, arrays, etc.)
@@ -54,7 +57,8 @@ public enum TrailingComma: String {
 }
 
 /// Arrow function parentheses options
-public enum ArrowParens: String {
+public enum ArrowParens: String, CaseIterable, Identifiable {
+    public var id: String { rawValue }
     /// Omit parentheses when possible (x => x)
     case avoid = "avoid"
     /// Always include parentheses ((x) => x)
@@ -62,7 +66,8 @@ public enum ArrowParens: String {
 }
 
 /// End of line options
-public enum EndOfLine: String {
+public enum EndOfLine: String, CaseIterable, Identifiable {
+    public var id: String { rawValue }
     /// Maintain existing line endings (mixed values within one file are normalised by looking at what's used after the first line)
     case auto = "auto"
     /// Line Feed only (\n), common on Linux and macOS as well as inside git repos
@@ -74,7 +79,8 @@ public enum EndOfLine: String {
 }
 
 /// Prose wrap options
-public enum ProseWrap: String {
+public enum ProseWrap: String, CaseIterable, Identifiable {
+    public var id: String { rawValue }
     /// Wrap prose if it exceeds the print width
     case always = "always"
     /// Do not wrap prose
@@ -84,7 +90,8 @@ public enum ProseWrap: String {
 }
 
 /// HTML whitespace sensitivity options
-public enum HTMLWhitespaceSensitivity: String {
+public enum HTMLWhitespaceSensitivity: String, CaseIterable, Identifiable  {
+    public var id: String { rawValue }
     /// Respect the default value of CSS display property
     case css = "css"
     /// All whitespaces are considered significant
@@ -94,7 +101,8 @@ public enum HTMLWhitespaceSensitivity: String {
 }
 
 /// Embedded language formatting options
-public enum EmbeddedLanguageFormatting: String {
+public enum EmbeddedLanguageFormatting: String, CaseIterable, Identifiable {
+    public var id: String { rawValue }
     /// Format embedded code if Prettier can automatically identify it
     case auto = "auto"
     /// Never automatically format embedded code
