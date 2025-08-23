@@ -249,30 +249,5 @@ public class PrettierFormatter {
         guard hasDirectFormat || hasDefaultFormat else {
             throw PrettierError.formattingFailed("Prettier.format function not found")
         }
-        
-        // Optional: Test format function with a simple case
-        #if DEBUG
-        testFormatFunction(prettierObj)
-        #endif
-    }
-    
-    /// Test format function with a simple case (Debug only)
-    private func testFormatFunction(_ prettierObj: JSValue) {
-        let testScript = """
-        (function() {
-            try {
-                var testResult = Prettier.format('const x=1;', {parser: 'babel'});
-                return typeof testResult === 'string' || (testResult && typeof testResult.then === 'function');
-            } catch(e) {
-                return false;
-            }
-        })()
-        """
-        
-        if let testResult = jsContext?.evaluateScript(testScript), testResult.toBool() {
-            print("✅ Prettier format function validated successfully")
-        } else {
-            print("⚠️  Prettier format function validation failed")
-        }
     }
 }
