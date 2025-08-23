@@ -179,7 +179,6 @@ let yamlFormatted = try formatter.format(yamlCode, parser: .yaml)
 
 ```swift
 let options = PrettierOptions(
-    parser: .babel,
     printWidth: 100,
     tabWidth: 4,
     useTabs: false,
@@ -245,7 +244,6 @@ let formatted = try formatter.format(code, parser: .babel, options: options)
 
 ### Formatting Options
 
-- `parser`: Parser type (see supported parsers list above)
 - `printWidth`: Maximum characters per line (default: 80)
 - `tabWidth`: Tab width (default: 2)
 - `useTabs`: Whether to use tabs instead of spaces (default: false)
